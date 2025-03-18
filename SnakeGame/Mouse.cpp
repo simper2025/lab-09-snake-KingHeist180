@@ -12,5 +12,5 @@ point Mouse::moveMouse()
 
 void Mouse::draw(point value)
 {
-	Console::txtPlot(value, 69);
+	Console::txtPlot(value, 136);
 }

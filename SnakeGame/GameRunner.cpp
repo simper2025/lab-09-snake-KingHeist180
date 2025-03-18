@@ -1,7 +1,6 @@
 #include "GameRunner.h"
 #include <windows.h>
 #include <conio.h>
-#include <vector>
 #include <ctime>
 #include <chrono>
 #include "point.h"
