@@ -5,6 +5,8 @@
 #include <chrono>
 #include "point.h"
 #include "Console.h"
+#include "Snake.h"
+#include "Mouse.h"
 
 void GameRunner::runGame()
 {
@@ -13,23 +15,24 @@ void GameRunner::runGame()
     runTime = std::chrono::system_clock::now();
     Sleep(300);
 
-    point playerloc = { 0, 10 };
-    point direction = { 1, 0 };
-    int length = 5;
-
+    Snake snake = Snake(68, 204);
     //Loop to start drawing and playing.
     keypress = press.keyPressed();
     while (keypress != KeyCommand::Quit) {
 
+        snake.DrawSnake();
+
         keypress = press.keyPressed();
+        snake.SetDirection(keypress);
 
         currentTime = chrono::system_clock::now();
 
         double elapsedTime = chrono::duration_cast<chrono::milliseconds>(currentTime - runTime).count();
-        if (elapsedTime > fracSec * 1000) {
+        if (elapsedTime > 1000/ fracSec) {
             runTime = chrono::system_clock::now();
 
-            Console::txtPlot(playerloc, 31);
+            snake.move();
+            Console::txtPlot(snake.GetHead(), 31);
 
             //_cprintf("Length: %i", length);
         }
